@@ -193,6 +193,7 @@ def get_chapter_info(bookId):
         return {item["chapterUid"]: item for item in update}
     return None
 
+
 def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
     """插入到notion"""
     time.sleep(0.3)
