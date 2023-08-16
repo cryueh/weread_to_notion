@@ -193,9 +193,15 @@ def get_chapter_info(bookId):
         return {item["chapterUid"]: item for item in update}
     return None
 
+def ensure_image_extension(cover_url):
+    image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+    if not any(cover_url.endswith(ext) for ext in image_extensions):
+        return cover_url + '.jpg'
+    return cover_url
 
 def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
     """插入到notion"""
+    cover = ensure_image_extension(cover)
     time.sleep(0.3)
     parent = {
         "database_id": database_id,
